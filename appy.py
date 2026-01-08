@@ -83,7 +83,7 @@ def check_password():
     if not st.session_state.password_correct:
         st.title("🔒 비공개 홈페이지 입니다.")
         st.write("관계자 외 출입금지")
-        
+       if st.button("접속하기"): 
        if pwd == st.secrets["PASSWORD"]:  
                 st.session_state.password_correct = True
                 st.rerun()
