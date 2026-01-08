@@ -80,7 +80,7 @@ def check_password():
 
     # 비밀번호가 아직 틀렸거나 입력 전이면 입력창 보여주기
     if not st.session_state.password_correct:
-        st.title("🔒 비공개 분석기")
+        st.title("🔒 비공개 홈페이지")
         st.write("관계자 외 출입금지")
         
         pwd = st.text_input("비밀번호를 입력하세요", type="password")
@@ -94,7 +94,7 @@ def check_password():
                     st.session_state.password_correct = True
                     st.rerun()  # 맞으면 화면 새로고침
                 else:
-                    st.error("비밀번호가 틀렸습니다. 땡! ❌")
+                    st.error("경고! 비밀번호가 틀렸습니다. 귀하의 접근 정보와 기록이 남습니다.")
             except FileNotFoundError:
                 st.error("Secrets 설정이 안 되어 있습니다. Streamlit 사이트 설정을 확인하세요.")
         
