@@ -72,23 +72,49 @@ def analyze_literature_v17_pure(api_key, original_text, teacher_criteria, self_a
 # 2. Streamlit 화면 구성 (UI)
 # ==========================================
 st.set_page_config(page_title="LiteratureAI Analyst v17.0", layout="wide")
+# ==========================================
+# [보안] 비밀번호 잠금 장치 (여기서 멈춤)
+# ==========================================
+def check_password():
+    """비밀번호 확인 함수"""
+    if "password_correct" not in st.session_state:
+        st.session_state.password_correct = False
+
+    if not st.session_state.password_correct:
+        st.title("🔒 비공개 홈페이지 입니다.")
+        st.write("관계자 외 출입금지")
+        
+        pwd = st.text_input("비밀번호를 입력하세요", type="password")
+        
+        if st.button("접속하기"):
+            # [수정] 아래 "1234"를 원하는 비밀번호로 바꾸세요!
+            if pwd == "1209":  
+                st.session_state.password_correct = True
+                st.rerun()
+            else:
+                st.error("비밀번호가 틀렸습니다!")
+        
+        # 비밀번호 틀리면 여기서 코드 실행을 멈춤 (아래 내용 안 보임)
+        st.stop()
+
+# 비밀번호 검사 실행
+check_password()
 # [수정됨] 화면을 왼쪽(1) : 가운데(4) : 오른쪽(1) 비율로 3등분
 col_left, col_center, col_right = st.columns([1, 4, 1])
 
-# 1. 왼쪽 기둥 (국정원 로고)
+# 1. 왼쪽 기둥 ( 로고)
 with col_left:
-    st.image("https://i.namu.wiki/i/_ZYs-Zik2mKNx__OThdkxJxjAqGTqW5gvYkid6dYy4l2knLo_H4gRS-pbtaFRhjMDMu2LyFI_hgO5z34l-uzKBa5_4kNws_qVGcL2pix9L5QaK6wSXLI_pb_EQVrLL8kyDem5XHcKYnMRaPwZxpBKw.svg", width=120)
-
+    st.image("https://i.namu.wiki/i/9HvRzzpNGP1k-k0PU4Hp-xQWUV2eNQEJu6a18aOEy3gizARGS8mbGf7TI0jYGEz6WP8HDAJxo4HdPZxZCNW5jv8Hkzibsf74tV714FEx56NbS55YfoYjjWG1iXpz6pozsNdmhIIR8Xb-Lvtvoz4uDA.webp", width=900)
 # 2. 가운데 기둥 (제목)
 with col_center:
-    st.title("National Intelligence Service v17.0") # 제목을 원하시는대로 수정하세요
+    st.title("PSJ EDU Service v17.0") # 제목을 원하시는대로 수정하세요
     st.header("🧐 With PSJ EDU v17.0")
     st.caption("순수 해석 정밀 분석 모드 (연출 제외, 오독/누락 체크)")
 
 # 3. 오른쪽 기둥 (새로 추가할 로고)
 with col_right:
     # 여기에 원하시는 두 번째 사진 주소를 넣으세요!
-    # 지금은 예시로 '메가스터디' 로고 같은 걸 찾아서 넣거나, 원하시는 이미지 주소를 넣으세요.
+    # 지금은 예시로 같은 걸 찾아서 넣거나, 원하시는 이미지 주소를 넣으세요.
     st.image("https://i.namu.wiki/i/9HvRzzpNGP1k-k0PU4Hp-xQWUV2eNQEJu6a18aOEy3gizARGS8mbGf7TI0jYGEz6WP8HDAJxo4HdPZxZCNW5jv8Hkzibsf74tV714FEx56NbS55YfoYjjWG1iXpz6pozsNdmhIIR8Xb-Lvtvoz4uDA.webp", width=900)
 # 사이드바: API 키 입력
 with st.sidebar:
