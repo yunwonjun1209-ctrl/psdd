@@ -84,15 +84,11 @@ def check_password():
         st.title("🔒 비공개 홈페이지 입니다.")
         st.write("관계자 외 출입금지")
         
-        pwd = st.text_input("비밀번호를 입력하세요", type="password")
-        
-        if st.button("접속하기"):
-            # [수정] 아래 "1234"를 원하는 비밀번호로 바꾸세요!
-            if pwd == "1209":  
+       if pwd == st.secrets["PASSWORD"]:  
                 st.session_state.password_correct = True
                 st.rerun()
             else:
-                st.error("비밀번호가 틀렸습니다!")
+                st.error("비밀번호가 틀렸습니다. 귀하의 접근 기록과 주소가 남습니다.")
         
         # 비밀번호 틀리면 여기서 코드 실행을 멈춤 (아래 내용 안 보임)
         st.stop()
