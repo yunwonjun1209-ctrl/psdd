@@ -72,26 +72,37 @@ def analyze_literature_v17_pure(api_key, original_text, teacher_criteria, self_a
 # 2. Streamlit 화면 구성 (UI)
 # ==========================================
 st.set_page_config(page_title="LiteratureAI Analyst v17.0", layout="wide")
-# ==========================================
-# [보안] 비밀번호 잠금 장치 (여기서 멈춤)
-# ==========================================
 def check_password():
-    """비밀번호 확인 함수"""
+    """비밀번호가 맞는지 확인하는 함수"""
+    # 세션 상태 초기화
     if "password_correct" not in st.session_state:
         st.session_state.password_correct = False
 
+    # 비밀번호가 아직 틀렸거나 입력 전이면 입력창 보여주기
     if not st.session_state.password_correct:
-        st.title("🔒 비공개 홈페이지 입니다.")
+        st.title("🔒 비공개 분석기")
         st.write("관계자 외 출입금지")
-       if st.button("접속하기"): 
-       if pwd == st.secrets["PASSWORD"]:  
-                st.session_state.password_correct = True
-                st.rerun()
-            else:
-                st.error("비밀번호가 틀렸습니다. 귀하의 접근 기록과 주소가 남습니다.")
         
-        # 비밀번호 틀리면 여기서 코드 실행을 멈춤 (아래 내용 안 보임)
+        pwd = st.text_input("비밀번호를 입력하세요", type="password")
+        
+        if st.button("접속하기"):
+            # [중요] Streamlit 사이트의 Secrets에 설정한 "PASSWORD"와 비교
+            # 로컬(내컴퓨터)에서 테스트할 때는 에러가 날 수 있으니
+            # secrets.toml 파일을 만들거나, 아래 코드를 잠시 if pwd == "1234": 로 쓰세요.
+            try:
+                if pwd == st.secrets["PASSWORD"]:  
+                    st.session_state.password_correct = True
+                    st.rerun()  # 맞으면 화면 새로고침
+                else:
+                    st.error("비밀번호가 틀렸습니다. 땡! ❌")
+            except FileNotFoundError:
+                st.error("Secrets 설정이 안 되어 있습니다. Streamlit 사이트 설정을 확인하세요.")
+        
+        # 비밀번호가 틀리면 아래 코드는 실행하지 않고 여기서 멈춤
         st.stop()
+
+# 비밀번호 검사 실행 (통과 못하면 여기서 멈춤)
+check_password()
 
 # 비밀번호 검사 실행
 check_password()
