@@ -10,7 +10,7 @@ def analyze_literature_v17_pure(api_key, original_text, teacher_criteria, self_a
     genai.configure(api_key=api_key)
     
     # 논리적 사고력이 가장 좋은 Pro 모델 사용
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-pro')
 
     prompt = f"""
     당신은 타협을 모르는 문학 분석관 'Literature Investigation Squad (v17.5)'입니다.
