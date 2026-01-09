@@ -9,7 +9,7 @@ def analyze_literature_v17_learning(api_key, original_text, teacher_criteria, se
     genai.configure(api_key=api_key)
     
     # 논리적 엄밀함을 위해 Pro 모델 유지
-    model = genai.GenerativeModel('gemini-2.5-pro')
+    model = genai.GenerativeModel('gemini-2.5-flash')
 
     prompt = f"""
     당신은 깐깐하지만 공정한 문학 분석관 'Literature Investigation Squad (v17.4)'입니다.
