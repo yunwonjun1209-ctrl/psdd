@@ -9,7 +9,7 @@ def analyze_literature_v17_learning(api_key, original_text, teacher_criteria, se
     genai.configure(api_key=api_key)
     
     # 논리적 엄밀함을 위해 Pro 모델 유지
-    model = genai.GenerativeModel('gemini-1.5-pro')
+    model = genai.GenerativeModel('gemini-2.5-pro')
 
     prompt = f"""
     당신은 깐깐하지만 공정한 문학 분석관 'Literature Investigation Squad (v17.4)'입니다.
@@ -72,7 +72,7 @@ def analyze_literature_v17_learning(api_key, original_text, teacher_criteria, se
 # ==========================================
 # 2. Streamlit 화면 구성 (UI)
 # ==========================================
-st.set_page_config(page_title="LiteratureAI Analyst v17.0", layout="wide")
+st.set_page_config(page_title="LiteratureAI Analyst v17.4", layout="wide")
 def check_password():
     """비밀번호가 맞는지 확인하는 함수"""
     # 세션 상태 초기화
@@ -115,8 +115,8 @@ with col_left:
     st.image("https://i.namu.wiki/i/9HvRzzpNGP1k-k0PU4Hp-xQWUV2eNQEJu6a18aOEy3gizARGS8mbGf7TI0jYGEz6WP8HDAJxo4HdPZxZCNW5jv8Hkzibsf74tV714FEx56NbS55YfoYjjWG1iXpz6pozsNdmhIIR8Xb-Lvtvoz4uDA.webp", width=900)
 # 2. 가운데 기둥 (제목)
 with col_center:
-    st.title("PSJ EDU Service v17.0") # 제목을 원하시는대로 수정하세요
-    st.header("🧐 With PSJ EDU v17.0")
+    st.title("PSJ EDU Service v17.4") # 제목을 원하시는대로 수정하세요
+    st.header("🧐 With PSJ EDU v17.4")
     st.caption("순수 해석 정밀 분석 모드 (연출 제외, 오독/누락 체크)")
 
 # 3. 오른쪽 기둥 (새로 추가할 로고)
