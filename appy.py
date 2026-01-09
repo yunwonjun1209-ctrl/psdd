@@ -5,7 +5,7 @@ import google.generativeai as genai
 # ==========================================
 # 🧠 LiteratureAI Brain v17.4 (용어 순화 + 개념 엄격 평가)
 # ==========================================
-def analyze_literature_v17_learning(api_key, original_text, teacher_criteria, self_analysis):
+def def analyze_literature_v17_pure(api_key, original_text, teacher_criteria, self_analysis):
     genai.configure(api_key=api_key)
     
     # 논리적 엄밀함을 위해 Pro 모델 유지
